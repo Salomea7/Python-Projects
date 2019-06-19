@@ -3,6 +3,7 @@
 Created on Tue Jun 18 22:02:33 2019
 Script that will convert all files from .LPV to .MP4
 @author: salomea7
+Needed a script to change 100 GoPro videos into a viewable format
 """
 
 #! python3
