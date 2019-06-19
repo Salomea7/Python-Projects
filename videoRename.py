@@ -11,21 +11,23 @@ import os
 import shutil
 
 # changes directory to correct one
-os.chdir('CHANGE TO FOLDER')
+os.chdir('CHANGE TO SOURCE FOLDER')
+convertFrom = ('LRV')
+convertTo = ('MP4')
 
 #See's if the folder is already created
-if not os.path.exists('MP4'):
-    os.makedirs('MP4')
+if not os.path.exists(convertTo):
+    os.makedirs(convertTo)
 
 #Append's the files to a list that can be iterated through
 videoFiles = []
-for filename in os.listdir('CAN BE CWD OR THE SAME AS CHDIR ABOVE'):
-    if filename.endswith('.LPV'):
+for filename in os.listdir(os.getcwd()):
+    if filename.endswith('.' + convertFrom):
         videoFiles.append(filename)
 
 # iterates through the file names in videoFiles, taking off the file endings and adding the correct ending.        
 for files in videoFiles:
     try:
-        shutil.move('SOURCE FOLDER' + files, 'DESTINATION FOLDER' + files[:-4] + ".MP4")
+        shutil.move(os.getcwd() + '\\\\' + files, os.getcwd() + '\\\\' + convertTo + files[:-4] + "." + convertTo)
     except Exception:
         continue
