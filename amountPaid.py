@@ -24,8 +24,11 @@ def amountPaid(payPerHour, hours):
     for month in months:
         workingDays = workingDays + months[month]['WorkingDays']
         months[month]['payPerMonth'] = (payPerHour * months[month]['WorkingDays']) * hours
-        total += months[month]['payPerMonth']
+        #print(months[month]['payPerMonth'])
+        total += months[month]['payPerMonth']   
     net = total
+    
+    
     #Pooling from the net amount, the net will by subtracted by the length of the appropriate tax bracket and fed into a list, seperating the totals
     for brackets in federalTaxes:
         if net <= 0:
@@ -47,11 +50,12 @@ def amountPaid(payPerHour, hours):
     taxRest = total * illinoisTaxes + total * otherTaxes
     taxTotal = fedTaxes + taxRest
     totalPay = total - taxTotal
-    perDay = totalPay/12/workingDays
+    perDayRate = totalPay/workingDays
+
 
     perMonth = 0
     for month in months:
-        addMonth = totalPay / months[month]['WorkingDays'] * perDay
+        addMonth = perDayRate * months[month]['WorkingDays']
         perMonth = perMonth + addMonth
         print('In ' + str(month) + ' you will make ' + str(round(addMonth)) + '.' + ' That makes ' + str(round(perMonth)) + ' so far.')
     print('You\'ll earn ' + str(round(perMonth)) + ' this year')
